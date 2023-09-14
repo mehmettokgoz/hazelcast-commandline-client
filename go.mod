@@ -97,3 +97,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 	software.sslmate.com/src/go-pkcs12 v0.2.1
 )
+
+replace github.com/hazelcast/hazelcast-go-client => /Users/mehmet/hazelcast/hazelcast-go-client

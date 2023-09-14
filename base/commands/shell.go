@@ -6,7 +6,6 @@ import (
 	"context"
 	"fmt"
 	"path/filepath"
-	"strings"
 	"sync"
 
 	"github.com/hazelcast/hazelcast-commandline-client/clc"
@@ -25,8 +24,6 @@ const banner = `Hazelcast CLC %s (c) 2023 Hazelcast Inc.
 		
 * Participate in our survey at: https://forms.gle/rPFywdQjvib1QCe49
 * Type 'help' for help information. Prefix non-SQL commands with \
-		
-%s%s
 
 `
 
@@ -63,18 +60,8 @@ func (cm *ShellCommand) ExecInteractive(ctx context.Context, ec plug.ExecContext
 	if err != nil {
 		return fmt.Errorf("cloning Main: %w", err)
 	}
-	var cfgText, logText string
 	if !terminal.IsPipe(ec.Stdin()) {
-		cfgPath := ec.ConfigPath()
-		if cfgPath != "" {
-			cfgText = fmt.Sprintf("Configuration : %s\n", cfgPath)
-		}
-		logPath := ec.Props().GetString(clc.PropertyLogPath)
-		if logPath != "" {
-			logLevel := strings.ToUpper(ec.Props().GetString(clc.PropertyLogLevel))
-			logText = fmt.Sprintf("Log %9s : %s", logLevel, logPath)
-		}
-		check.I2(fmt.Fprintf(ec.Stdout(), banner, internal.Version, cfgText, logText))
+		check.I2(fmt.Fprintf(ec.Stdout(), banner, internal.Version))
 	}
 	endLineFn := makeEndLineFunc()
 	textFn := makeTextFunc(m, ec, func(shortcut string) bool {

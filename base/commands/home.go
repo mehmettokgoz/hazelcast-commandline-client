@@ -1,4 +1,4 @@
-//go:build std || home
+//go:build std && home
 
 package commands
 

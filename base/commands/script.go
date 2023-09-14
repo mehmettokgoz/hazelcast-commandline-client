@@ -1,4 +1,4 @@
-//go:build std || script
+//go:build std && script
 
 package commands
 

@@ -1,4 +1,4 @@
-//go:build std || job
+//go:build std && job
 
 package job_test
 

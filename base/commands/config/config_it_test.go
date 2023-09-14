@@ -1,4 +1,4 @@
-//go:build std || config
+//go:build std && config
 
 package config_test
 

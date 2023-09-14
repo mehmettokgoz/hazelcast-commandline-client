@@ -1,4 +1,4 @@
-//go:build std || snapshot
+//go:build std && snapshot
 
 package snapshot
 

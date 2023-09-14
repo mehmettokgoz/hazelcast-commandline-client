@@ -1,4 +1,4 @@
-//go:build std || project
+//go:build std && project
 
 package project
 
